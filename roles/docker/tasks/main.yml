@@ -1,2 +1,35 @@
 ---
-# tasks file for docker
+- name: Install aptituede using apt
+  apt: name=aptitude state=latest update_cache=year force_apt_get=yes
+
+- name: Installing {{ default_container_name }} in Linux
+  apt: name="{{ default_container_name }}" state=present update_cache=yes
+
+- name: Install required system packages
+  apt: name={{ item }} state=latest update_cache=yes
+  loop: [ 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common', 'python3-pip', 'virtualenv', 'python3-setuptools']
+
+- name: Add docker GPG apt key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: add apt registory
+  apt_repository: deb https://download.docker.com/linux/ubuntu bionic stable
+  state: present
+
+- name: Installing docker dependencies
+  apt: name="{{ item }}" state=present update_cache=yes
+  with_items:
+    - docker-ce
+    - docker-ce-cli
+    - containerd.io
+
+- name: Install docker module for python
+  pip:
+    name: "{{ default_container_name }}"
+
+- name: Pull default docker image
+  docker_image:
+    name: "{{ default_container_image }}"
+    source: pull

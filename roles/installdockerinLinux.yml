@@ -1,0 +1,7 @@
+- hosts: all
+  become: true
+  var_files:
+    - vars/main.yml
+
+roles:
+  - docker
