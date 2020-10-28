@@ -1,9 +1,4 @@
 [azureserver]
 52.188.21.89
 
-[webserver]
-app01
-app02
-
-[database]
-db01
+remote_user=rkansible
