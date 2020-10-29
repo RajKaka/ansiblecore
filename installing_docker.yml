@@ -1,0 +1,5 @@
+---
+- hosts: azureserver
+  become: true
+  roles:
+    - roles/docker

@@ -33,3 +33,11 @@
   docker_image:
     name: "{{ default_container_image }}"
     source: pull
+
+- name: Creating docker continers
+  docker_continer:
+    name: "{{ default_container_name }}{{ item }}"
+    image: "{{ default_container_image }}"
+    command: "{{ default_container_command }}"
+    state: present
+  with_sequence: count="{{ create_containers }}"
