@@ -36,7 +36,7 @@
     source: pull
 
 - name: Creating docker continers
-  docker_continer:
+  docker_container:
     name: "{{ default_container_name }}{{ item }}"
     image: "{{ default_container_image }}"
     command: "{{ default_container_command }}"
