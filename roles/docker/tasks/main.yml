@@ -1,4 +1,10 @@
 ---
+- name: Installing all pre-req softwares
+  apt: name={{ item }} state=present update_cache=yes force_apt_get=yes
+  with_items:
+    - python-apt
+    - python3-apt
+
 - name: Install aptituede using apt
   apt: name=aptitude state=latest update_cache=yes force_apt_get=yes
 
