@@ -1,6 +1,6 @@
 ---
 - name: Install aptituede using apt
-  apt: name=aptitude state=latest update_cache=year force_apt_get=yes
+  apt: name=aptitude state=latest update_cache=yes force_apt_get=yes
 
 - name: Installing {{ default_container_name }} in Linux
   apt: name="{{ default_container_name }}" state=present update_cache=yes
@@ -41,4 +41,4 @@
     image: "{{ default_container_image }}"
     command: "{{ default_container_command }}"
     state: present
-  with_sequence: count={{ create_containers}} 
+  with_sequence: count={{ create_containers}}
