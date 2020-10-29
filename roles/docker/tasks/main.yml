@@ -4,6 +4,7 @@
   with_items:
     - python-apt
     - python3-apt
+    - python2
 
 - name: Install aptituede using apt
   apt: name=aptitude state=latest update_cache=yes force_apt_get=yes
